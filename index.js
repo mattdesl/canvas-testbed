@@ -53,9 +53,10 @@ module.exports = function( render, start, options ) {
 				var now = Date.now();
 				var dt = (now-then);
 
-				requestAnimationFrame(renderHandler);
+				if (!options.once)
+					requestAnimationFrame(renderHandler);
+				
 				render(context, width, height, dt);
-
 				then = now;
 			}
 			requestAnimationFrame(renderHandler);
