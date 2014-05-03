@@ -1,0 +1,26 @@
+{
+  "name": "canvas-testbed",
+  "version": "0.0.0",
+  "description": "A minimal tedbed for simple canvas demos",
+  "main": "index.js",
+  "dependencies": {
+    "domready": "~1.0.5",
+    "raf.js": "~0.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "canvas",
+    "test",
+    "testbed",
+    "demo",
+    "beefy",
+    "prototype",
+    "prototyping",
+    "webgl"
+  ],
+  "author": "Matt DesLauriers",
+  "license": "MIT"
+}
