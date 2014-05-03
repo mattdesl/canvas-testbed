@@ -31,8 +31,6 @@ function render(context, width, height) {
 test( render );
 ```
 
-# example
-
 See the `demo` folder for a couple other examples.
 
 All parameters are optional. Without a `render` function the requestAnimationFrame will not be fired.
