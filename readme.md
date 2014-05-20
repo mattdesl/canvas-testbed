@@ -15,6 +15,7 @@ It also includes a [requestAnimationFrame polyfill](https://www.npmjs.org/packag
 
 ```js
 testbed( [onRender], [onStart], [options] )
+testbed( [onRender], [options] )
 ```
 
 Example:
@@ -28,7 +29,9 @@ function render(context, width, height) {
 }
 
 //setup the testbed
-test( render );
+test(render, {
+	once: true
+});
 ```
 
 See the `demo` folder for a couple other examples.

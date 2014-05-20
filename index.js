@@ -3,6 +3,12 @@ require('raf.js');
 
 module.exports = function( render, start, options ) {
 	domready(function() {
+		//options were provided as the second argument,
+		if (typeof start === "object" && start) {
+			options = start;
+			start = null;
+		}
+
 		options = options||{};
 
 		document.body.style.margin = "0";
