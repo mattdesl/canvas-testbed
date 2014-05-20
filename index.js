@@ -10,7 +10,7 @@ module.exports = function( render, start, options ) {
 		}
 
 		options = options||{};
-
+		
 		document.body.style.margin = "0";
 		document.body.style.overflow = "hidden";
 
@@ -39,14 +39,18 @@ module.exports = function( render, start, options ) {
 
 		var width = canvas.width,
 			height = canvas.height;
+			
+		if (!options.ignoreResize) {
+			window.addEventListener("resize", function() {
+				width = window.innerWidth;
+				height = window.innerHeight;
+				canvas.width = width;
+				canvas.height = height;
 
-		window.addEventListener("resize", function() {
-			width = window.innerWidth;
-			height = window.innerHeight;
-			canvas.width = width;
-			canvas.height = height;
-		});
-
+				if (options.once)
+					requestAnimationFrame(renderHandler);
+			});
+		}
 		
 		var then = Date.now();
 
