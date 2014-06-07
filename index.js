@@ -8,9 +8,19 @@ module.exports = function( render, start, options ) {
 		document.body.style.margin = "0";
 		document.body.style.overflow = "hidden";
 
+		var hasWidth = typeof options.width === "number", 
+			hasHeight = typeof options.height === "number";
+		
+		//if either width or height is specified, don't auto-resize to the window...
+		if (hasWidth || hasHeight) 
+			options.ignoreResize = true;
+		
+		options.width = hasWidth ? options.width : window.innerWidth;
+		options.height = hasHeight ? options.height : window.innerHeight;
+
 		var canvas = document.createElement("canvas");
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		canvas.width = options.width;
+		canvas.height = options.height;
 		canvas.setAttribute("id", "canvas");
 
 		document.body.appendChild(canvas);
@@ -43,6 +53,8 @@ module.exports = function( render, start, options ) {
 
 				if (options.once)
 					requestAnimationFrame(renderHandler);
+				if (typeof options.onResize === "function")
+					options.onResize(width, height);
 			});
 		}
 		

@@ -42,7 +42,9 @@ More may be added later, like unified touch/mouse handling for simple interactiv
 - `context` a string, "2d" or "webgl"
 - `contextAttributes` the attributes to be passed when creating the context
 - `once` only fire the render frame once, and then again when the window is resized (to avoid the canvas clearing completely)
-- `ignoreResize` does not handle resize events; by default this is false, and the canvas is scaled to the window
+- `ignoreResize` to ignore resize events; by default this is false, and the canvas is scaled to the window size
+- `onResize` a callback for after the canvas has been resized; will not be called if the resize event is ignored
+- `width`, `height` to specifiy an explicit width or height of the canvas. if either is specified, the resize events will be ignored.
 
 # testing with beefy
 
