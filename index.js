@@ -10,6 +10,8 @@ module.exports = function( render, start, options ) {
 		}
 
 		options = options||{};
+
+		options.retina = typeof options.retina === "boolean" ? options.retina : true;
 		
 		document.body.style.margin = "0";
 		document.body.style.overflow = "hidden";
@@ -24,10 +26,17 @@ module.exports = function( render, start, options ) {
 		options.width = hasWidth ? options.width : window.innerWidth;
 		options.height = hasHeight ? options.height : window.innerHeight;
 
+		var DPR  = options.retina ? (window.devicePixelRatio||1) : 1; 
+
 		var canvas = document.createElement("canvas");
-		canvas.width = options.width;
-		canvas.height = options.height;
+		canvas.width = options.width * DPR;
+		canvas.height = options.height * DPR;
 		canvas.setAttribute("id", "canvas");
+
+        if (options.retina) {
+        	canvas.style.width = options.width + 'px';
+            canvas.style.height = options.height + 'px';
+        }
 
 		document.body.appendChild(canvas);
 
@@ -47,20 +56,34 @@ module.exports = function( render, start, options ) {
 			context = canvas.getContext(options.context||"2d", attribs);
 		}
 
-		var width = canvas.width,
-			height = canvas.height;
-			
+
+		var width = options.width,
+			height = options.height;
+		
+		function resize() {
+			width = window.innerWidth;
+			height = window.innerHeight;
+			canvas.width = width * DPR;
+			canvas.height = height * DPR;
+
+	        if (options.retina) {
+	        	canvas.style.width = width + 'px';
+	            canvas.style.height = height + 'px';
+	        }
+
+			if (options.once)
+				requestAnimationFrame(renderHandler);
+			if (typeof options.onResize === "function")
+				options.onResize(width, height);
+		}
+
 		if (!options.ignoreResize) {
 			window.addEventListener("resize", function() {
-				width = window.innerWidth;
-				height = window.innerHeight;
-				canvas.width = width;
-				canvas.height = height;
+				resize();
+			});
 
-				if (options.once)
-					requestAnimationFrame(renderHandler);
-				if (typeof options.onResize === "function")
-					options.onResize(width, height);
+			window.addEventListener("orientationchange", function() {
+				resize();
 			});
 		}
 		
@@ -78,7 +101,11 @@ module.exports = function( render, start, options ) {
 				if (!options.once)
 					requestAnimationFrame(renderHandler);
 				
+				context.save();
+				context.scale(DPR, DPR);
 				render(context, width, height, dt);
+
+				context.restore();
 				then = now;
 			}
 			requestAnimationFrame(renderHandler);
