@@ -14,4 +14,10 @@ function start(context, width, height) {
 	console.log(context.canvas);
 }
 
-testbed(render, start);
+testbed(render, {
+    canvas: document.createElement("canvas"),
+    onReady: start,
+    onResize: function(width, height) {
+        console.log("resizing", width, height);
+    }
+});
