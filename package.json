@@ -4,7 +4,7 @@
   "description": "A minimal tedbed for simple canvas demos",
   "main": "index.js",
   "dependencies": {
-    "canvas-app": "^2.0.0",
+    "canvas-app": "^2.1.1",
     "domready": "~1.0.5",
     "raf.js": "~0.0.4"
   },
