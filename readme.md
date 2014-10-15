@@ -49,6 +49,8 @@ More may be added later, like unified touch/mouse handling for simple interactiv
 - `onResize` a callback for after the canvas has been resized; will not be called if the resize event is ignored
 - `width`, `height` to specifiy an explicit width or height of the canvas. if either is specified, the resize events will be ignored.
 
+You can also pass any of the options of [canvas-app](https://www.npmjs.org/package/canvas-app), which this module builds on. 
+
 # testing with beefy
 
 First install beefy:
