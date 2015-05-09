@@ -1,6 +1,6 @@
 {
   "name": "canvas-testbed",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A minimal testbed for simple canvas demos",
   "main": "index.js",
   "dependencies": {
