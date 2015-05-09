@@ -1,5 +1,15 @@
 # canvas testbed
 
+#### deprecation warning
+
+This module is bloated and a little too magical. Instead, some of the following are recommended:
+
+- [canvas-fit-loop](https://www.npmjs.com/package/canvas-fit-loop)
+- [2d-context](https://www.npmjs.com/package/2d-context)
+- [webgl-context](https://www.npmjs.com/package/webgl-context)
+
+---
+
 For visual apps, this is a simple module to get your demos and prototypes up and running. Ideal for use with Beefy. When the [DOM content is ready](https://www.npmjs.org/package/domready), it does the following:
 
 - Clear the body margins to zero
